@@ -293,7 +293,7 @@ export const PROFILE_DETAILS: Record<ProfileType, ProfileDetails> = {
     challenge: 'Tu mente es un motor que nunca descansa, consumida por la rumiación silenciosa y el miedo al juicio. Esta ansiedad constante es tu forma de buscar dopamina ("seguridad"), lo que te deja exhausto y paralizado.',
     compassion: 'No eres débil; estás sobrecargado. Es hora de darle a tu mente la claridad que se merece. Nuestro plan se enfoca en técnicas de atención plena oriental para transformar la tensión en paz interior y movimiento.',
     purpose: 'Pasarás de la Rumiación al Foco Sereno.',
-    image: 'https://picsum.photos/seed/peace/600/400',
+    image: 'https://i.postimg.cc/htp4rjWv/pexels-cottonbro-7351144.jpg',
   },
   [PT.SE]: {
     title: 'Eres un Buscador de Estímulos (SE).',
@@ -302,7 +302,7 @@ export const PROFILE_DETAILS: Record<ProfileType, ProfileDetails> = {
     challenge: 'Vives para el próximo "subidón". Tu sistema de dopamina está saturado por la gratificación instantánea (redes, juegos, snacks), lo que hace que todo lo que requiere esfuerzo a largo plazo se sienta aburrido e insoportable.',
     compassion: 'No estás condenado al aburrimiento; solo necesitas reajustar tu "termómetro de la felicidad". Es hora de recuperar tu tiempo y tu foco. Nuestro plan te enseñará neurociencia del comportamiento para obtener satisfacción de logros reales, no solo de notificaciones.',
     purpose: 'Pasarás de la Búsqueda Impulsiva al Disfrute Sostenible.',
-    image: 'https://picsum.photos/seed/energy/600/400',
+    image: 'https://i.postimg.cc/tgJqmjp7/pexels-tima-miroshnichenko-7047010-1.jpg',
   },
   [PT.AD]: {
     title: 'Eres un Apático Desmotivado (AD).',
@@ -311,7 +311,7 @@ export const PROFILE_DETAILS: Record<ProfileType, ProfileDetails> = {
     challenge: 'Sientes una profunda falta de inercia y energía. La apatía te paraliza, haciendo que el esfuerzo más pequeño se sienta agotador. Esto es una señal de que tu sistema está agotado por la sobrecarga o el burnout pasado.',
     compassion: 'Es válido sentirse agotado. Tu mente está pidiendo un reinicio compasivo. Nuestro plan no te pedirá esfuerzos gigantes, sino pequeños pasos estratégicos y sabiduría oriental para reconstruir el impulso y la alegría por la vida.',
     purpose: 'Pasarás del Letargo a la Energía Revitalizada.',
-    image: 'https://picsum.photos/seed/rebuild/600/400',
+    image: 'https://i.postimg.cc/k5GJhmq7/pexels-cottonbro-4114855.jpg',
   },
   [PT.DP]: {
     title: 'Eres un Disperso Perfeccionista (DP).',
@@ -320,6 +320,6 @@ export const PROFILE_DETAILS: Record<ProfileType, ProfileDetails> = {
     challenge: 'Intentas hacerlo todo perfectamente, lo que resulta en dispersión, procrastinación por abrumación y proyectos incompletos. Te enfocas tanto en el cómo debe ser perfecto, que olvidas el hacer real.',
     compassion: 'Tu potencial no se mide por la cantidad de ideas, sino por la cantidad de logros. Es hora de dejar de planear y empezar a actuar. Nuestro plan te dará el marco simple y riguroso que necesitas para enfocar tu energía y completar lo que realmente importa.',
     purpose: 'Pasarás de la Dispersión a la Productividad Clara.',
-    image: 'https://picsum.photos/seed/focus/600/400',
+    image: 'https://i.postimg.cc/d03sSYw0/pexels-ola-dapo-1754561-3345882.jpg',
   },
 };
