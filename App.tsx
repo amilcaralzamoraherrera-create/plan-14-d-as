@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { QUESTIONS_MATRIX, PROFILE_DETAILS } from './constants';
 import type { Question, ProfileType, AnswerCounts, Option } from './types';
@@ -45,7 +46,7 @@ const Screen1: React.FC<{ onNext: () => void }> = ({ onNext }) => (
         </h1>
         <h2 className="text-2xl sm:text-3xl text-gray-700 mb-6">Descubre tu tipo de Mente.</h2>
         <p className="text-lg text-gray-500 mb-8">Mejora tú mismo con un Plan Personalizado para ti.</p>
-        <p className="text-md text-green-600 font-semibold mb-10">Solo 3 minutos de test.</p>
+        <p className="text-md text-green-600 font-semibold mb-10">3 minutos de test.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={onNext} className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl border border-gray-200 hover:border-green-400 hover:bg-gray-50 shadow-sm transition-all duration-300 flex-1">
                 <img src="https://i.postimg.cc/V6jT8zQc/varon.png" alt="Masculino" className="h-48 w-48 object-cover rounded-full" />
@@ -86,13 +87,13 @@ const Screen3: React.FC<{ questions: Question[], onAnswer: (profile: ProfileType
         <ScreenWrapper>
             <AnimatedProgressBar progress={progress} />
             <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200">
-                <h3 className="text-2xl sm:text-3xl font-semibold mb-8 h-24 flex items-center justify-center">{currentQuestion.question}</h3>
+                <h3 className="text-2xl sm:text-3xl font-semibold mb-8 h-auto min-h-[6rem] flex items-center justify-center">{currentQuestion.question}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {currentQuestion.options.map((option: Option, index: number) => (
                         <button
                             key={index}
                             onClick={() => onAnswer(option.profile)}
-                            className="w-full text-left p-4 bg-gray-100 rounded-lg hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+                            className="w-full text-left p-4 bg-gray-100 rounded-lg hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center"
                         >
                             {option.text}
                         </button>
@@ -145,7 +146,7 @@ const Screen5: React.FC<{ onNext: () => void }> = ({ onNext }) => {
 
     return (
         <ScreenWrapper>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Estamos analizando tus 28 respuestas y creando tu perfil mental único…</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Estamos analizando tus 20 respuestas y creando tu perfil mental único…</h2>
             <AnimatedProgressBar progress={progress} />
             <p className="text-lg text-gray-500 mb-12">Un experto en comportamiento está consolidando tu análisis, basado en evidencia científica y principios psicológicos/espirituales.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -250,8 +251,11 @@ const Screen9: React.FC<{ profile: ProfileType }> = ({ profile }) => {
                         </div>
                     </div>
                      <div className="mt-10">
-                        <CTAButton onClick={() => alert('Redirigiendo al plan completo...')}>
-                           Ver Mi Plan y Empezar Hoy
+                        <CTAButton 
+                            onClick={() => window.location.href = 'https://landingpage.plan14dias.life'}
+                            className="animate-pulse-glow"
+                        >
+                           VER MI PLAN Y EMPEZAR HOY
                         </CTAButton>
                     </div>
                 </div>
