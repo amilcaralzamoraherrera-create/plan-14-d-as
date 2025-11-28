@@ -226,6 +226,15 @@ const Screen8: React.FC<{ onNext: () => void }> = ({ onNext }) => {
 const Screen9: React.FC<{ profile: ProfileType }> = ({ profile }) => {
     const details = PROFILE_DETAILS[profile];
     if (!details) return <ScreenWrapper><p>Error al cargar el perfil.</p></ScreenWrapper>;
+  const handleNext = () => {
+        // Dispara el evento LEAD de Meta (Píxel)
+        if (typeof fbq === 'function') {
+            fbq('track', 'Lead'); 
+        }
+        
+        // Redirige a la página de compra
+        window.location.href = 'https://landingpage.plan14dias.life';
+    }
 
     return (
         <ScreenWrapper>
@@ -252,7 +261,7 @@ const Screen9: React.FC<{ profile: ProfileType }> = ({ profile }) => {
                     </div>
                      <div className="mt-10">
                         <CTAButton 
-                            onClick={() => window.location.href = 'https://landingpage.plan14dias.life'}
+                            onClick={handleNext}
                             className="animate-pulse-glow"
                         >
                            VER MI PLAN Y EMPEZAR HOY
