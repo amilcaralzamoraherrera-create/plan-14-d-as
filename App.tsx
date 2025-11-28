@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { QUESTIONS_MATRIX, PROFILE_DETAILS } from './constants';
 import type { Question, ProfileType, AnswerCounts, Option } from './types';
+declare global {
+  function fbq(...args: any[]): void;
+}
 
 // Helper function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
