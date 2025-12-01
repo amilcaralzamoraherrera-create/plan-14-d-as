@@ -82,30 +82,50 @@ const Screen2: React.FC<{ onNext: () => void }> = ({ onNext }) => {
     );
 };
 
-const Screen3: React.FC<{ questions: Question[], onAnswer: (profile: ProfileType) => void, currentQuestionIndex: number }> = ({ questions, onAnswer, currentQuestionIndex }) => {
-    if (!questions.length) return <ScreenWrapper><p>Cargando preguntas...</p></ScreenWrapper>;
-    const currentQuestion = questions[currentQuestionIndex];
-    const progress = ((currentQuestionIndex) / questions.length) * 100;
+const Screen3: React.FC<{ questions: Question[],
+onAnswer: (profile: ProfileType) => void, currentQuestionIndex: number }>
+= ({ questions, onAnswer, currentQuestionIndex }) => {
+    if
+(!questions.length) return <ScreenWrapper><p>Cargando
+preguntas...</p></ScreenWrapper>;
 
-    return (
-        <ScreenWrapper>
-            <AnimatedProgressBar progress={progress} />
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200">
-                <h3 className="text-2xl sm:text-3xl font-semibold mb-8 h-auto min-h-[6rem] flex items-center justify-center">{currentQuestion.question}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {currentQuestion.options.map((option: Option, index: number) => (
-                        <button
-                            key={index}
-                            onClick={() => onAnswer(option.profile)}
-                            className="w-full text-left p-4 bg-gray-100 rounded-lg hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center"
-                        >
-                            {option.text}
-                        </button>
-                    ))}
-                </div>
-            </div>
-        </ScreenWrapper>
-    );
+    const
+currentQuestion = questions[currentQuestionIndex];
+    const totalQuestions = 16; // Asumimos 16, aunque questions.length es más seguro
+    const currentStep = currentQuestionIndex + 1;
+    const progress = (currentQuestionIndex / questions.length) * 100;
+
+    return (
+       <ScreenWrapper>
+            {/* --- INDICADOR DE PROGRESO DE TEXTO AÑADIDO AQUÍ --- */}
+            <p className="text-lg font-bold text-gray-700 mb-2">
+                Pregunta {currentStep} de {totalQuestions}
+            </p>
+            {/* --- BARRA DE PROGRESO ANIMADA EXISTENTE --- */}
+            <AnimatedProgressBar progress={progress} />
+            
+            <div
+className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border
+border-gray-200">
+                <h3
+className="text-2xl sm:text-3xl font-semibold mb-8 h-auto min-h-[6rem]
+flex items-center justify-center">{currentQuestion.question}</h3>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   {currentQuestion.options.map((option: Option, index: number) => (
+                       <button
+                           key={index}
+                           onClick={() => onAnswer(option.profile)}
+                           className="w-full text-left p-4 bg-gray-100 rounded-lg
+hover:bg-green-500 hover:text-white transition-all duration-300 transform
+hover:scale-105 flex items-center"
+                       >
+                           {option.text}
+                       </button>
+                   ))}
+               </div>
+           </div>
+       </ScreenWrapper>
+    );
 };
 
 const Screen4: React.FC<{ onNext: () => void }> = ({ onNext }) => (
