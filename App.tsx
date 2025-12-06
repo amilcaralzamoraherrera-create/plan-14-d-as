@@ -3,10 +3,6 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { QUESTIONS_MATRIX, PROFILE_DETAILS } from './constants';
 import type { Question, ProfileType, AnswerCounts, Option } from './types';
 
-declare global {
-  function fbq(...args: any[]): void;
-}
-
 // Helper function to shuffle array
 const shuffleArray = <T,>(array: T[]): T[] => {
   return [...array].sort(() => Math.random() - 0.5);
@@ -50,7 +46,7 @@ const Screen1: React.FC<{ onNext: () => void }> = ({ onNext }) => (
         </h1>
         <h2 className="text-2xl sm:text-3xl text-gray-700 mb-6">Descubre tu tipo de Mente.</h2>
         <p className="text-lg text-gray-500 mb-8">Mejora tú mismo con un Plan Personalizado para ti.</p>
-        <p className="text-md text-green-600 font-semibold mb-10">3 minutos de test.</p>
+        <p className="text-md text-green-600 font-semibold mb-10">2 minutos de test.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={onNext} className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl border border-gray-200 hover:border-green-400 hover:bg-gray-50 shadow-sm transition-all duration-300 flex-1">
                 <img src="https://i.postimg.cc/V6jT8zQc/varon.png" alt="Masculino" className="h-48 w-48 object-cover rounded-full" />
@@ -82,50 +78,30 @@ const Screen2: React.FC<{ onNext: () => void }> = ({ onNext }) => {
     );
 };
 
-const Screen3: React.FC<{ questions: Question[],
-onAnswer: (profile: ProfileType) => void, currentQuestionIndex: number }>
-= ({ questions, onAnswer, currentQuestionIndex }) => {
-    if
-(!questions.length) return <ScreenWrapper><p>Cargando
-preguntas...</p></ScreenWrapper>;
+const Screen3: React.FC<{ questions: Question[], onAnswer: (profile: ProfileType) => void, currentQuestionIndex: number }> = ({ questions, onAnswer, currentQuestionIndex }) => {
+    if (!questions.length) return <ScreenWrapper><p>Cargando preguntas...</p></ScreenWrapper>;
+    const currentQuestion = questions[currentQuestionIndex];
+    const progress = ((currentQuestionIndex) / questions.length) * 100;
 
-    const
-currentQuestion = questions[currentQuestionIndex];
-    const totalQuestions = 16; // Asumimos 16, aunque questions.length es más seguro
-    const currentStep = currentQuestionIndex + 1;
-    const progress = (currentQuestionIndex / questions.length) * 100;
-
-    return (
-       <ScreenWrapper>
-            {/* --- INDICADOR DE PROGRESO DE TEXTO AÑADIDO AQUÍ --- */}
-            <p className="text-lg font-bold text-gray-700 mb-2">
-                Pregunta {currentStep} de {totalQuestions}
-            </p>
-            {/* --- BARRA DE PROGRESO ANIMADA EXISTENTE --- */}
-            <AnimatedProgressBar progress={progress} />
-            
-            <div
-className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border
-border-gray-200">
-                <h3
-className="text-2xl sm:text-3xl font-semibold mb-8 h-auto min-h-[6rem]
-flex items-center justify-center">{currentQuestion.question}</h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                   {currentQuestion.options.map((option: Option, index: number) => (
-                       <button
-                           key={index}
-                           onClick={() => onAnswer(option.profile)}
-                           className="w-full text-left p-4 bg-gray-100 rounded-lg
-hover:bg-green-500 hover:text-white transition-all duration-300 transform
-hover:scale-105 flex items-center"
-                       >
-                           {option.text}
-                       </button>
-                   ))}
-               </div>
-           </div>
-       </ScreenWrapper>
-    );
+    return (
+        <ScreenWrapper>
+            <AnimatedProgressBar progress={progress} />
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200">
+                <h3 className="text-2xl sm:text-3xl font-semibold mb-8 h-auto min-h-[6rem] flex items-center justify-center">{currentQuestion.question}</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {currentQuestion.options.map((option: Option, index: number) => (
+                        <button
+                            key={index}
+                            onClick={() => onAnswer(option.profile)}
+                            className="w-full text-left p-4 bg-gray-100 rounded-lg hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center"
+                        >
+                            {option.text}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </ScreenWrapper>
+    );
 };
 
 const Screen4: React.FC<{ onNext: () => void }> = ({ onNext }) => (
@@ -250,15 +226,6 @@ const Screen8: React.FC<{ onNext: () => void }> = ({ onNext }) => {
 const Screen9: React.FC<{ profile: ProfileType }> = ({ profile }) => {
     const details = PROFILE_DETAILS[profile];
     if (!details) return <ScreenWrapper><p>Error al cargar el perfil.</p></ScreenWrapper>;
-  const handleNext = () => {
-        // Dispara el evento LEAD de Meta (Píxel)
-        if (typeof fbq === 'function') {
-            fbq('track', 'Lead'); 
-        }
-        
-        // Redirige a la página de compra
-        window.location.href = 'https://landingpage.plan14dias.life';
-    }
 
     return (
         <ScreenWrapper>
@@ -285,7 +252,7 @@ const Screen9: React.FC<{ profile: ProfileType }> = ({ profile }) => {
                     </div>
                      <div className="mt-10">
                         <CTAButton 
-                            onClick={handleNext}
+                            onClick={() => window.location.href = 'https://landingpage.plan14dias.life'}
                             className="animate-pulse-glow"
                         >
                            VER MI PLAN Y EMPEZAR HOY
